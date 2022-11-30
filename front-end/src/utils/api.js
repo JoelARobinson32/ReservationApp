@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 /**
  * Defines the base URL for the API.
  * The default values is overridden by the `API_BASE_URL` environment variable.
@@ -49,6 +51,24 @@ async function fetchJson(url, options, onCancel) {
       throw error;
     }
     return Promise.resolve(onCancel);
+  }
+}
+
+export async function emptyTable(table_id) {
+  const url = new URL(`${API_BASE_URL}/tables/${table_id}/seat`);
+  try {
+    return await axios.delete(url);
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function listTables(signal) {
+  const url = new URL(`${API_BASE_URL}/tables`);
+  try {
+    return await fetchJson(url, { headers, signal }, []);
+  } catch (error) {
+    return error;
   }
 }
 

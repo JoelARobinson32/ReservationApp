@@ -1,6 +1,31 @@
 const dateFormat = /\d\d\d\d-\d\d-\d\d/;
 const timeFormat = /\d\d:\d\d/;
 
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
 /**
  * Formats a Date object as YYYY-MM-DD.
  *
@@ -79,4 +104,33 @@ export function next(currentDate) {
   date.setMonth(date.getMonth());
   date.setDate(date.getDate() + 1);
   return asDateString(date);
+}
+
+/**
+ * converts the date
+ */
+export function convertDate(date) {
+  let [year, month, day] = date.split("-");
+  month -= 1;
+  const dateObj = new Date(year, month, day);
+  const displayDate = {
+    day: days[dateObj.getDay()],
+    month: months[dateObj.getMonth()],
+    date: dateObj.getDate(),
+    year: dateObj.getFullYear(),
+  };
+  displayDate.display = `${displayDate.day}, ${displayDate.month} ${displayDate.date} ${displayDate.year}`;
+  return displayDate;
+}
+
+/**
+ * converts the time
+ */
+export function convertTime(time) {
+  let [hour, minute] = time.split(":");
+  hour = Number(hour);
+  const amPm = hour <= 11 ? "am" : "pm";
+  hour = hour <= 12 ? hour : hour - 12;
+  hour = hour === 0 ? 12 : hour;
+  return hour + ":" + minute + amPm;
 }

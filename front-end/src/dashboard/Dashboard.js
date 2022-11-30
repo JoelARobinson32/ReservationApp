@@ -6,13 +6,16 @@ import ReservationList from "../reservations/ReservationList";
 import TableList from "../tables/TableList";
 
 import { listReservations, listTables } from "../utils/api";
-import { today, previous, next, getDisplayDate } from "../utils/date-time";
+import { previous, next, convertDate } from "../utils/date-time";
 import useQuery from "../utils/useQuery";
 
+import "./DashboardStyle.css";
 
-// Handle the Dashboard, as named by origninal repo but will be referred to as 'Home'
 
-// List relevent Information
+/**
+ * Defines the dashboard page.
+ * @returns {JSX.Element}
+ */
 function Dashboard({ date }) {
   const history = useHistory();
 
@@ -23,7 +26,7 @@ function Dashboard({ date }) {
 
   const query = useQuery();
   date = query.get("date") || date;
-  const displayDate = getDisplayDate(date);
+  const displayDate = convertDate(date);
 
   useEffect(loadDashboard, [date, displayDate.display]);
 
@@ -53,14 +56,18 @@ function Dashboard({ date }) {
         {/* Next Day */}
         <button
           type="button"
-          className="btn btn-warning btn-sm mt-3 mb-3 mr-2"
+          className="btn btn-info btn-sm mt-3 mb-3 mr-2"
           onClick={() => history.push(`/dashboard?date=${previous(date)}`)}
         >
           <span className="oi oi-caret-left mr-1" />
         </button>
 
         {/* Form */}
-        <span className="d-inline-flex p-2 oi oi-calendar mt-3 mr-1" />
+        <div className="input-group-prepend">
+            <span className="input-group-text mt-3 mb-3" id="basic-addon1">
+                <span className="oi oi-calendar" />
+            </span>
+        </div>
         <input
           type="date"
           className="form-control mt-3 mb-3 mr-2"
@@ -74,7 +81,7 @@ function Dashboard({ date }) {
         {/* Day Before */}
         <button
           type="button"
-          className="btn btn-warning btn-sm mt-3 mb-3 mr-2"
+          className="btn btn-info btn-sm mt-3 mb-3 mr-2"
           onClick={() => history.push(`/dashboard?date=${next(date)}`)}
         >
           <span className="oi oi-caret-right ml-1" />
@@ -82,14 +89,14 @@ function Dashboard({ date }) {
       </div>
 
       {/* Header info */}
-        <h1 className="mb-4">Home</h1>
+        <h2 className="text mb-3">Home</h2>
         <div className="d-md-flex mb-3">
           <h4 className="mb-0">{displayDate.display}</h4>
         </div>
 
         {/* reservations section */}
         <div>
-          <h5 className="mt-3">Reservations</h5>
+          <h5 className="text mt-3">Reservations</h5>
         </div>
         <div>
           {!reservations.length && resErr}
@@ -103,7 +110,7 @@ function Dashboard({ date }) {
         {/* tables section */}
         <ErrorAlert error={tabErr} />
         <div>
-          <h5 className="mt-4">Tables</h5>
+          <h5 className="text mt-4">Tables</h5>
         </div>
         <div>
           <TableList tables={tables} />
@@ -112,17 +119,22 @@ function Dashboard({ date }) {
 
       {/*Date buttons/form*/}
       <div className="input-group input-group-sm">
+
         {/* Next Day */}
         <button
           type="button"
-          className="btn btn-warning btn-sm mt-3 mb-3 mr-2"
+          className="btn btn-info btn-sm mt-3 mb-3 mr-2"
           onClick={() => history.push(`/dashboard?date=${previous(date)}`)}
         >
           <span className="oi oi-caret-left mr-1" />
         </button>
 
         {/* Form */}
-        <span className="d-inline-flex p-2 oi oi-calendar mt-3 mr-1" />
+        <div className="input-group-prepend">
+            <span className="input-group-text mt-3 mb-3" id="basic-addon1">
+                <span className="oi oi-calendar" />
+            </span>
+        </div>
         <input
           type="date"
           className="form-control mt-3 mb-3 mr-2"
@@ -136,7 +148,7 @@ function Dashboard({ date }) {
         {/* Day Before */}
         <button
           type="button"
-          className="btn btn-warning btn-sm mt-3 mb-3 mr-2"
+          className="btn btn-info btn-sm mt-3 mb-3 mr-2"
           onClick={() => history.push(`/dashboard?date=${next(date)}`)}
         >
           <span className="oi oi-caret-right ml-1" />

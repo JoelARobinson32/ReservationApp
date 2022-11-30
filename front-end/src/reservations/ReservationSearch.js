@@ -1,2 +1,13 @@
+import React from "react";
+import RSearchForm from "./RSearchForm";
 
-// Shows which tables are open for the seat componant.
+// Search Reservations
+
+export default function ReservationSearch() {
+  return (
+    <div>
+      <h2 className="mb-2 mt-3">Search Reservations</h2>
+      <RSearchForm />
+    </div>
+  );
+}

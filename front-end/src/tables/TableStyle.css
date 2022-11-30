@@ -1,0 +1,16 @@
+.formEntry {
+    max-width: 400px;
+    min-width: 400px;
+}
+
+.btn-warning {
+    background-color: #fcbf49 !important;
+}
+
+.btn-danger {
+    background-color: #ee6c4d !important;
+}
+
+#basic-addon1 {
+    background-color: #d6ca89;
+}
