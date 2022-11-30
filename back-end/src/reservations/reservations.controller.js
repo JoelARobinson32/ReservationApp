@@ -122,7 +122,7 @@ function isAfterReservation(req, res, next) {
   }
   else {
     const resStatus = res.locals.reservation.status;
-    setError(400, `Reservation status update to: =${resStatus}`, next);
+    setError(400, `Reservation status update to: ${resStatus}`, next);
   }
 }
 
