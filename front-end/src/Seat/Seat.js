@@ -10,3 +10,4 @@ export default function Seat() {
     </div>
   );
 }
+//Render thinks this file doesn't exist?'
