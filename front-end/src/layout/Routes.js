@@ -7,7 +7,7 @@ import ReservationAdd from "../reservations/ReservationAdd";
 import ReservationSearch from "../reservations/ReservationSearch";
 import ReservationUpdate from "../reservations/ReservationUpdate";
 import TableAdd from "../tables/TableAdd";
-import Seat from "../seat/Seat";
+import Seat from "../seat/SeatComp";
 import SeatForm from "../seat/SeatForm";
 import NotFound from "./NotFound";
 
