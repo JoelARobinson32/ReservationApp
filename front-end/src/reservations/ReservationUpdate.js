@@ -10,7 +10,7 @@ import ReservationForm from "./ReservationForm";
 // Allows you to update existing reservations
 
 export default function ReservationUpdate() {
-  const URL = process.env.REACT_APP_API_BASE_URL;
+  const URL = "https://reservationappbyjoelbackend.onrender.com";
   const [resExists, setResExists] = useState(null);
   const [error, setError] = useState(null);
 

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import ErrorAlert from "../layout/ErrorAlert";
 
-import ReservationList from "../reservations/ReservationList";
-import TableList from "../tables/TableList";
+import ReservationsList from "../reservations/ReservationsList";
+import TablesList from "../tables/TablesList";
 
 import { listReservations, listTables } from "../utils/api";
 import { previous, next, convertDate } from "../utils/date-time";
@@ -47,6 +47,14 @@ function Dashboard({ date }) {
     return () => abortController.abort();
   }
 
+  const reservationsList = reservations.map(
+    (reservation) => <tr key={`resv-${reservation.reservation_id}`}><ReservationsList reservation={reservation} /></tr>
+  );
+
+  const tablesList = tables.map(
+    (table) => <TablesList key={`tbl-${table.table_id}`} table={table} />
+  );
+
   return (
     <main>
       <div>
@@ -56,7 +64,7 @@ function Dashboard({ date }) {
         {/* Next Day */}
         <button
           type="button"
-          className="btn btn-info btn-sm mt-3 mb-3 mr-2"
+          className="btn btn-info border-secondary btn-sm mt-3 mb-3 mr-2"
           onClick={() => history.push(`/dashboard?date=${previous(date)}`)}
         >
           <span className="oi oi-caret-left mr-1" />
@@ -81,7 +89,7 @@ function Dashboard({ date }) {
         {/* Day Before */}
         <button
           type="button"
-          className="btn btn-info btn-sm mt-3 mb-3 mr-2"
+          className="btn btn-info border-secondary btn-sm mt-3 mb-3 mr-2"
           onClick={() => history.push(`/dashboard?date=${next(date)}`)}
         >
           <span className="oi oi-caret-right ml-1" />
@@ -101,10 +109,8 @@ function Dashboard({ date }) {
         <div>
           {!reservations.length && resErr}
         </div>
-        <div>
-          {reservations.length > 0 && (
-            <ReservationList reservations={reservations} />
-          )}
+        <div className="compRow">
+          {reservationsList}
         </div>
 
         {/* tables section */}
@@ -112,8 +118,8 @@ function Dashboard({ date }) {
         <div>
           <h5 className="text mt-4">Tables</h5>
         </div>
-        <div>
-          <TableList tables={tables} />
+        <div className="compRow">
+          {tablesList}
         </div>
       </div>
 
@@ -123,7 +129,7 @@ function Dashboard({ date }) {
         {/* Next Day */}
         <button
           type="button"
-          className="btn btn-info btn-sm mt-3 mb-3 mr-2"
+          className="btn btn-info border-secondary btn-sm mt-3 mb-3 mr-2"
           onClick={() => history.push(`/dashboard?date=${previous(date)}`)}
         >
           <span className="oi oi-caret-left mr-1" />
@@ -148,7 +154,7 @@ function Dashboard({ date }) {
         {/* Day Before */}
         <button
           type="button"
-          className="btn btn-info btn-sm mt-3 mb-3 mr-2"
+          className="btn btn-info border-secondary btn-sm mt-3 mb-3 mr-2"
           onClick={() => history.push(`/dashboard?date=${next(date)}`)}
         >
           <span className="oi oi-caret-right ml-1" />

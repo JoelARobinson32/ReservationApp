@@ -14,3 +14,11 @@
 #basic-addon1 {
     background-color: #d6ca89;
 }
+
+.card-header {
+    background-color: #661018 !important;
+}
+
+.card-body {
+    background-color: #d6ca89 !important;
+}

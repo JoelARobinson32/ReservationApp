@@ -4,9 +4,14 @@
 }
 
 #basic-addon1 {
-    background-color: #6d877e;
+    background-color: #d6ca89;
 }
 
 .btn-danger {
     background-color: #ee6c4d !important;
+}
+
+.compRow {
+    display: flex;
+    flex-direction: row;
 }

@@ -9,7 +9,7 @@ import "./ReservationsStyle.css";
 
 // Form for handling a reservation. 'Edit' bool checks if you are editing a new or existing reservation.
 export default function ReservationForm({ resExists, edit = false }) {
-  const URL = process.env.REACT_APP_API_BASE_URL + "/reservations";
+  const URL = "https://reservationappbyjoelbackend.onrender.com" + "/reservations";
   const history = useHistory();
 
   const initForm = {

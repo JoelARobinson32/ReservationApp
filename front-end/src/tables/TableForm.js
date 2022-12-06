@@ -38,7 +38,7 @@ export default function TableForm() {
     setError(null);
     const abortController = new AbortController();
     try {
-      await axios.post(process.env.REACT_APP_API_BASE_URL + `/tables`, {
+      await axios.post("https://reservationappbyjoelbackend.onrender.com" + "/tables", {
         data: formData,
         signal: AbortController.signal,
       });

@@ -1,60 +1,44 @@
 import React, { useState, useEffect } from "react";
 
 import formatPhone from "../utils/format-phone";
-import { listReservations } from "../utils/api";
+import { listReservationsByNumber } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 
-import ReservationList from "./ReservationList";
+import ReservationsList from "./ReservationsList";
 
 import "./ReservationsStyle.css";
 
 // Search form
 export default function RSearchForm() {
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [reservations, setReservations] = useState("");
-  const [showReservations, setShowReservations] = useState("");
-  const [error, setError] = useState(null);
+  const initialFormState = {
+    mobile_number: '',
+  };
+  const [reservations, setReservations] = useState([]);
+  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({ ...initialFormState });
 
-  useEffect(() => {
-    const abortController = new AbortController();
-    setError(null);
-    async function listMatchingReservations() {
-      try {
-        if (reservations.length) {
-          setShowReservations(
-            <ReservationList reservations={reservations} resActive={true} />
-          );
-        } else if (reservations !== "") {
-          setShowReservations(
-            <div className="alert alert-info">No reservations found</div>
-          );
-        }
-      } catch (error) {
-        setError(error);
-      }
-    }
-    listMatchingReservations();
-    return () => abortController.abort();
-  }, [reservations]);
-
-  function loadReservations() {
-    const abortController = new AbortController();
-    setError(null);
-    listReservations({ mobile_number: mobileNumber }, abortController.signal)
-      .then(setReservations)
-      .catch(setError);
-    return () => abortController.abort();
-  }
-
-  const handleUpdate = (event) => {
-    const formattedPhoneNumber = formatPhone(event.target.value);
-    setMobileNumber(formattedPhoneNumber);
+  const handleUpdate = ({ target }) => {
+    setFormData({
+      ...formData,
+      [target.name]: target.value,
+    });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    loadReservations();
+
+    const abortController = new AbortController();
+    listReservationsByNumber(formData.mobile_number, abortController.signal)
+      .then(data => {
+        if (data && data.length) setReservations(data)
+        else setError({ message: `No reservations found for mobile_number=${formData.mobile_number}` });
+      })
+      .catch(err => setError(err));
   };
+
+  const reservationsList = reservations.map(
+    (reservation) => <tr key={`rsv-${reservation.reservation_id}`}><ReservationsList reservation={reservation} /></tr>
+  );
 
   return (
     <div>
@@ -83,7 +67,7 @@ export default function RSearchForm() {
             aria-label="phone_number"
             type="text"
             placeholder="***-***-****"
-            value={mobileNumber}
+            value={formData.mobile_number}
             onChange={handleUpdate}
             required={true}
           />
@@ -99,7 +83,7 @@ export default function RSearchForm() {
       </form>
       <div>
         <ErrorAlert error={error} />
-        {showReservations}
+        {reservationsList}
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ import "../tables/TableStyle.css";
 // Form for handling seats
 export default function SeatForm() {
   const { reservation_id } = useParams();
-  const URL = process.env.REACT_APP_API_BASE_URL;
+  const URL = "https://reservationappbyjoelbackend.onrender.com";
   const history = useHistory();
 
   const [tables, setTables] = useState([]);
