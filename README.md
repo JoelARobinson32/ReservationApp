@@ -15,15 +15,15 @@ Run 'npm start' from the front-end folder to run the application locally.
 ## Back End
 
 ### Available routes
-`/reservations`.get Retrieves reservations based on current date
-`/reservations`.post Adds a reservation
-`/reservations?date=YYYY-MM-DD`.get Retrieves reservations based on entered date
-`/reservations/:reservation_id`.get Retrieves a reservation by id.
-`/reservations/:reservation_id`.put Updates a reservation by id.
-`/reservations/:reservation_id/status`.put Changes a reservation status by id..
-`/tables`.get Retrieves tables.
-`/tables`.post Adds a table.
-`/tables/:table_id/seat`.put Seats a reservation at a table.
+`/reservations`.get Retrieves reservations based on current date <br />
+`/reservations`.post Adds a reservation <br />
+`/reservations?date=YYYY-MM-DD`.get Retrieves reservations based on entered date <br />
+`/reservations/:reservation_id`.get Retrieves a reservation by id. <br />
+`/reservations/:reservation_id`.put Updates a reservation by id. <br />
+`/reservations/:reservation_id/status`.put Changes a reservation status by id. <br />
+`/tables`.get Retrieves tables. <br />
+`/tables`.post Adds a table. <br />
+`/tables/:table_id/seat`.put Seats a reservation at a table. <br />
 `/tables/:table_id/seat`.delete Clears a reservation from a table.
 
 ### Database Tables
