@@ -23,7 +23,7 @@ function TablesList({ table }) {
     };
 
     return (
-        <div className="card entry border-secondary">
+        <div className="card entry border-secondary my-1">
             <div className="card-header text-white">
                 <h5>
                     {table.table_name}
