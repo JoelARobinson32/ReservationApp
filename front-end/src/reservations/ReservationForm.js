@@ -29,22 +29,6 @@ export default function ReservationForm({ resExists, edit = false }) {
   );
   const [error, setError] = useState(null);
 
-  /*const handleUpdate = (event) => {
-    event.preventDefault();
-    if (event.target.name !== "people") {
-      setFormData({
-        ...formData,
-        [event.target.name]: event.target.value,
-      });
-    } else {
-      setFormData({
-        ...formData,
-        people: parseInt(event.target.value),
-      });
-    }
-  };
-  */
-
     function loadReservation() {
     const abortController = new AbortController();
     setError(null);
@@ -71,33 +55,6 @@ export default function ReservationForm({ resExists, edit = false }) {
       mobile_number: formattedPhoneNumber,
     });
   };
-
-  // Handles a request to update an existing reservation or create a new reservation.
-  /*const handleSubmit = async (event) => {
-    event.preventDefault();
-    setError(null);
-    const abortController = new AbortController();
-    try {
-      if (edit) {
-        await axios.put(`${URL}/${resExists.reservation_id}`, {
-          data: formData,
-          signal: AbortController.signal,
-        });
-      } else {
-        await axios.post(URL, {
-          data: formData,
-          signal: AbortController.signal,
-        });
-      }
-
-      history.push(`/dashboard?date=${formData.reservation_date}`);
-    } catch (error) {
-      setError(error.response.data.error);
-    }
-
-    return () => abortController.abort();
-  };
-  */
 
   const isEditable = (formData.status === "booked");
   const handleCancel = () => history.go(-1);

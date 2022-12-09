@@ -20,37 +20,6 @@ export default function TableForm() {
   const [formData, setFormData] = useState(initForm);
   const [error, setError] = useState('');
 
-  /* const handleUpdate = (event) => {
-    event.preventDefault();
-    if (event.target.name !== "capacity") {
-      setFormData({
-        ...formData,
-        [event.target.name]: event.target.value,
-      });
-    } else {
-      setFormData({
-        ...formData,
-        capacity: parseInt(event.target.value),
-      });
-    }
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setError(null);
-    const abortController = new AbortController();
-    try {
-      await axios.post("https://reservationappbyjoelbackend.onrender.com" + "/tables", {
-        data: formData,
-        signal: AbortController.signal,
-      });
-      history.push(`/dashboard`);
-    } catch (err) {
-      setError(err);
-    }
-    abortController.abort();
-  };*/
-
     const handleUpdate = ({ target }) => {
     setFormData({
       ...formData,
