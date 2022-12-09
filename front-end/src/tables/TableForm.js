@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 
+import { addTable } from '../utils/api';
+
 import axios from "axios";
 import ErrorAlert from "../layout/ErrorAlert";
 
@@ -16,9 +18,9 @@ export default function TableForm() {
   };
 
   const [formData, setFormData] = useState(initForm);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
 
-  const handleUpdate = (event) => {
+  /* const handleUpdate = (event) => {
     event.preventDefault();
     if (event.target.name !== "capacity") {
       setFormData({
@@ -43,10 +45,29 @@ export default function TableForm() {
         signal: AbortController.signal,
       });
       history.push(`/dashboard`);
-    } catch (error) {
-      setError(error.response.data.error);
+    } catch (err) {
+      setError(err);
     }
     abortController.abort();
+  };*/
+
+    const handleUpdate = ({ target }) => {
+    setFormData({
+      ...formData,
+      [target.name]: target.value,
+    });
+  };
+
+    const handleSubmit = async event => {
+    event.preventDefault();
+
+    const abortController = new AbortController();
+    const newTable = formData;
+    newTable.capacity = parseInt(formData.capacity, 10);
+    newTable.is_seated = false;
+    addTable(newTable, abortController.signal)
+      .then(() => history.push(`/dashboard`))
+      .catch(err => setError(err));
   };
 
   return (

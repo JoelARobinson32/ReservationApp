@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 
+import { addReservation, updateReservation, listReservationsByID } from '../utils/api';
 import formatPhone from "../utils/format-phone";
+
 import ErrorAlert from "../layout/ErrorAlert";
 
 import "./ReservationsStyle.css";
@@ -10,6 +12,7 @@ import "./ReservationsStyle.css";
 // Form for handling a reservation. 'Edit' bool checks if you are editing a new or existing reservation.
 export default function ReservationForm({ resExists, edit = false }) {
   const URL = "https://reservationappbyjoelbackend.onrender.com" + "/reservations";
+  const { reservation_id } = useParams();
   const history = useHistory();
 
   const initForm = {
@@ -26,7 +29,7 @@ export default function ReservationForm({ resExists, edit = false }) {
   );
   const [error, setError] = useState(null);
 
-  const handleUpdate = (event) => {
+  /*const handleUpdate = (event) => {
     event.preventDefault();
     if (event.target.name !== "people") {
       setFormData({
@@ -40,6 +43,26 @@ export default function ReservationForm({ resExists, edit = false }) {
       });
     }
   };
+  */
+
+    function loadReservation() {
+    const abortController = new AbortController();
+    setError(null);
+    if (edit === true) {
+      listReservationsByID(Number(reservation_id), abortController.signal)
+        .then(setFormData)
+        .catch(setError);
+    }
+    return () => abortController.abort();
+  }
+  useEffect(loadReservation, [reservation_id, edit]);
+
+    const handleUpdate = ({ target }) => {
+    setFormData({
+      ...formData,
+      [target.name]: target.value,
+    });
+  };
 
   const handlePhoneUpdate = (event) => {
     const formattedPhoneNumber = formatPhone(event.target.value);
@@ -50,7 +73,7 @@ export default function ReservationForm({ resExists, edit = false }) {
   };
 
   // Handles a request to update an existing reservation or create a new reservation.
-  const handleSubmit = async (event) => {
+  /*const handleSubmit = async (event) => {
     event.preventDefault();
     setError(null);
     const abortController = new AbortController();
@@ -73,6 +96,28 @@ export default function ReservationForm({ resExists, edit = false }) {
     }
 
     return () => abortController.abort();
+  };
+  */
+
+  const isEditable = (formData.status === "booked");
+  const handleCancel = () => history.go(-1);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const abortController = new AbortController();
+    const newReservation = formData;
+
+    newReservation.people = parseInt(formData.people, 10);
+    if (edit === false) {
+      newReservation.status = "booked";
+      addReservation(newReservation, abortController.signal)
+        .then(rsp => history.push(`/dashboard?date=${formData.reservation_date}`))
+        .catch(err => setError(err));
+    } else if(isEditable) {
+      updateReservation(newReservation, abortController.signal)
+        .then(res => history.push(`/dashboard?date=${formData.reservation_date}`))
+        .catch(err => setError(err));
+    }
   };
 
   return (
