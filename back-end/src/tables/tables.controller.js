@@ -151,7 +151,7 @@ module.exports = {
     hasData,
     hasAllProperties,
     isValidName,
-    //isNewName,
+    //isNewName, to fix I just gotta include knex, worry about it later.
     isValidCapacity,
     asyncErrorBoundary(create, 201)
   ],
