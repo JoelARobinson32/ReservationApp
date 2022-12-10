@@ -15,10 +15,10 @@ function ReservationsList({ reservation }) {
     const handleCancel = async (event) => {
         event.preventDefault();
 
-        if (window.confirm('Do you want to cancel this reservation? This cannot be undone.')) {
+        if (window.confirm('Permanently Cancel Reservation?')) {
             const abortController = new AbortController();
             updateReservationStatus({ ...reservation, status: "cancelled" }, abortController.signal)
-                .then(() => { history.go(0); })
+                .then(() => { history.go(-1); })
                 .catch(err => setError(err));
         }
     };
