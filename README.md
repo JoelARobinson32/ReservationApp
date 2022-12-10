@@ -9,7 +9,7 @@ Also Included are Knex, Bootstrap, and CSS.
 
 Fork and clone this repository
 Run 'npm install' from the root directory to install dependencies.
-Run 'npm run start:dev' from the back-end folder to run the development server locally.
+The Backend server is deployed and running, you do not need to run the server locally.
 Run 'npm start' from the front-end folder to run the application locally.
 
 ## Back End
@@ -63,10 +63,5 @@ This page takes you to a reservation form that allows you to enter a new reserva
 ### New Table
 This page brings you to a form that allows you to add a new table to your list of options.
 
-## Deployed Examples
-
-### Server 
+## Deployed Server
 https://reservationappbyjoelbackend.onrender.com
-
-### Application
-https://reservationappbyjoelfrontend.onrender.com
