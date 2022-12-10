@@ -7,10 +7,10 @@ Also Included are Knex, Bootstrap, and CSS.
 
 ## Installation
 
-`1:' Fork and clone this repository <br />
-`2:' Run 'npm install' from the root directory to install dependencies. <br />
-`1:' The Backend server is deployed and running, you do not need to run the server locally. <br />
-`2:' Run 'npm start' from the front-end folder to run the application locally. <br />
+`1:` Fork and clone this repository <br />
+`2:` Run 'npm install' from the root directory to install dependencies. <br />
+`1:` The Backend server is deployed and running, you do not need to run the server locally. <br />
+`2:` Run 'npm start' from the front-end folder to run the application locally. <br />
 
 ## Back End
 
