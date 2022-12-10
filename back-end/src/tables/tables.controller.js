@@ -27,21 +27,6 @@ function isValidName(req, res, next) {
   }
 }
 
-/*function isNewName(req, res, next) {
-  const { table_name } = req.body.data;
-
-  knex('tables')
-    .where('table_name', table_name)
-    .first()
-    .then(existingTable => {
-      if (!existingTable) {
-        next();
-      } else {
-        setError(400, `A table with the name '${table_name}' already exists`, next); 
-      }
-    });
-}*/
-
 function isValidCapacity(req, res, next) {
   if ((req.body.data.capacity > 0) && 
        Number.isInteger(req.body.data.capacity)) { 
@@ -151,7 +136,6 @@ module.exports = {
     hasData,
     hasAllProperties,
     isValidName,
-    //isNewName, to fix I just gotta include knex, worry about it later.
     isValidCapacity,
     asyncErrorBoundary(create, 201)
   ],

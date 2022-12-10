@@ -10,7 +10,8 @@ router.route("/")
 
 router.route("/:table_id/seat/")
 	.put(controller.seat)
-	.delete(controller.unseat)
 	.all(methodNotAllowed);
+
+router.delete('/:table_id/seat/', controller.unseat);
 
 module.exports = router;
