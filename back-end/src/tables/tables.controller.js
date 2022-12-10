@@ -151,7 +151,7 @@ module.exports = {
     asyncErrorBoundary(seat, 200)
   ],
 
-  unseat: [
+  unSeat: [
     tableExists,
     tableReserved,
     asyncErrorBoundary(unSeat, 200)
