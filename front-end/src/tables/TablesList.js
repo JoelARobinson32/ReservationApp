@@ -16,7 +16,7 @@ function TablesList({ table }) {
     if (window.confirm('Permanently Clear Table?')) {
         const abortController = new AbortController();
         emptyTable(table.table_id, abortController.signal)
-            //.then(() => { history.go(0); })
+            .then(() => { window.location.reload(); })
             .catch(err => setError(err));
         }
     };
