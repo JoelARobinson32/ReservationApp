@@ -1,6 +1,6 @@
 const path = require("path");
 
-require("dotenv").config({ path: path.join(__dirname, "..", ".env") });
+require("dotenv").config({ path: path.join(__dirname, "..", "postgres://tpyfklff:sqg48Z-ZcHr1H05F5fdjW7W7Sa9Uggig@peanut.db.elephantsql.com/tpyfklff") });
 
 const express = require("express");
 const cors = require("cors");
