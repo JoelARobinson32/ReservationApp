@@ -63,5 +63,10 @@ This page takes you to a reservation form that allows you to enter a new reserva
 ### New Table
 This page brings you to a form that allows you to add a new table to your list of options.
 
-## Deployed Server
+## Deployed Link
+
+### Client
+https://reservationappbyjoelfrontend.onrender.com/#/dashboard
+
+### Server
 https://reservationappbyjoelbackend.onrender.com
