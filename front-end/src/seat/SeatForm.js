@@ -31,7 +31,6 @@ function Seat() {
             .then(() => history.push(`/dashboard`))
             .catch(setError);
     };
-    const handleCancel = () => history.go(-1);
 
    const choices = tables.map((table) => (
         <TableOpen table={table} key={table.table_id} />

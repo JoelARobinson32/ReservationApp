@@ -18,7 +18,7 @@ function ReservationsList({ reservation }) {
         if (window.confirm('Permanently Cancel Reservation?')) {
             const abortController = new AbortController();
             updateReservationStatus({ ...reservation, status: "cancelled" }, abortController.signal)
-                .then(() => { history.go(-1); })
+                .then(() => { window.location.reload() })
                 .catch(err => setError(err));
         }
     };
