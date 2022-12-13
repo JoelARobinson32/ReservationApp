@@ -7,7 +7,6 @@ import ErrorAlert from "../layout/ErrorAlert";
 import "./TableStyle.css";
 
 function TablesList({ table }) {
-    const history = useHistory();
     const [error, setError] = useState('');
 
     const handleFinishClick = async event => {
