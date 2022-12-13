@@ -1,47 +1,47 @@
 import React from "react";
+
 import { Redirect, Route, Switch } from "react-router-dom";
-import { today } from "../utils/date-time";
-
 import Dashboard from "../dashboard/Dashboard";
-import ReservationAdd from "../reservations/ReservationAdd";
-import ReservationSearch from "../reservations/ReservationSearch";
-import ReservationUpdate from "../reservations/ReservationUpdate";
-import TableAdd from "../tables/TableAdd";
-import Seat from "../seat/SeatComp";
-import SeatForm from "../seat/SeatForm";
 import NotFound from "./NotFound";
+import ReservationsCreate from "../reservations/Create";
+import ReservationsEdit from "../reservations/Edit";
+import Seat from "../reservations/Seat";
+import TablesFormComponent from "../tables/FormComponent";
+import Search from "../search/Search";
 
-
-// Route handler
+/**
+ * Defines all the routes for the application.
+ *
+ * You will need to make changes to this file.
+ *
+ * @returns {JSX.Element}
+ */
 function Routes() {
   return (
     <Switch>
       <Route exact={true} path="/">
         <Redirect to={"/dashboard"} />
       </Route>
-      <Route path="/dashboard">
-        <Dashboard date={today()} />
-      </Route>
-      <Route exact={true} path="/search">
-        <ReservationSearch />
-      </Route>
       <Route exact={true} path="/reservations">
         <Redirect to={"/dashboard"} />
       </Route>
-      <Route exact={true} path="/reservations/new">
-        <ReservationAdd />
+      <Route path="/dashboard">
+        <Dashboard/>
       </Route>
-      <Route exact={true} path="/reservations/:reservation_id/edit">
-        <ReservationUpdate />
+      <Route path="/reservations/new">
+        <ReservationsCreate />
       </Route>
-      <Route exact={true} path="/reservations/:reservation_id/seat">
-        <Seat />
+      <Route path="/reservations/:reservation_id/seat">
+        <Seat/>
       </Route>
-      <Route exact={true} path="/tables">
-        <Redirect to={"/dashboard"} />
+      <Route path="/reservations/:reservation_id/edit">
+        <ReservationsEdit />
       </Route>
-      <Route exact={true} path="/tables/new">
-        <TableAdd />
+      <Route path="/tables/new">
+        <TablesFormComponent />
+      </Route>
+      <Route path="/search">
+        <Search />
       </Route>
       <Route>
         <NotFound />
