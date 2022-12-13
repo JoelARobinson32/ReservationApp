@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import axios from "axios";
 
 import { addReservation, updateReservation, listReservationsByID } from '../utils/api';
 import formatPhone from "../utils/format-phone";
@@ -11,7 +10,6 @@ import "./ReservationsStyle.css";
 
 // Form for handling a reservation. 'Edit' bool checks if you are editing a new or existing reservation.
 export default function ReservationForm({ resExists, edit = false }) {
-  const URL = "https://reservationappbyjoelbackend.onrender.com" + "/reservations";
   const { reservation_id } = useParams();
   const history = useHistory();
 
@@ -57,7 +55,6 @@ export default function ReservationForm({ resExists, edit = false }) {
   };
 
   const isEditable = (formData.status === "booked");
-  const handleCancel = () => history.go(-1);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
