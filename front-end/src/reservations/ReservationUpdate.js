@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { axios } from '../../node_modules/axios/lib/axios.js';
+import axios from "axios";
 
 import { formatAsDate } from "../utils/date-time";
 import ErrorAlert from "../layout/ErrorAlert";
