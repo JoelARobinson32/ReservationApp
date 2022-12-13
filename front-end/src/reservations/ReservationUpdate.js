@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import axios from "axios";
 
 import { formatAsDate } from "../utils/date-time";
 import ErrorAlert from "../layout/ErrorAlert";
 
 import ReservationForm from "./ReservationForm";
 
-const axios = require('axios');
+//const axios = require('axios');
 
 // Allows you to update existing reservations
 
