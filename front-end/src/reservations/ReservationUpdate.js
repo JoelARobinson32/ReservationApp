@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import axios from "axios";
 
 import { formatAsDate } from "../utils/date-time";
 import ErrorAlert from "../layout/ErrorAlert";
@@ -13,6 +12,7 @@ export default function ReservationUpdate() {
   const URL = "https://reservationappbyjoelbackend.onrender.com";
   const [resExists, setResExists] = useState(null);
   const [error, setError] = useState(null);
+  const axios = require('axios');
 
   const { reservation_id } = useParams();
 
