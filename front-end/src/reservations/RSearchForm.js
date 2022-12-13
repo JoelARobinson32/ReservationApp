@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-import formatPhone from "../utils/format-phone";
 import { listReservationsByNumber } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 
