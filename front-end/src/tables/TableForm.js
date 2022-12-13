@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 
 import { addTable } from '../utils/api';
-
-import axios from "axios";
 import ErrorAlert from "../layout/ErrorAlert";
 
 import "./TableStyle.css";
