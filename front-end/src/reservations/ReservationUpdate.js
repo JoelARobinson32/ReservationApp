@@ -6,13 +6,14 @@ import ErrorAlert from "../layout/ErrorAlert";
 
 import ReservationForm from "./ReservationForm";
 
+const axios = require('axios');
+
 // Allows you to update existing reservations
 
 export default function ReservationUpdate() {
   const URL = "https://reservationappbyjoelbackend.onrender.com";
   const [resExists, setResExists] = useState(null);
   const [error, setError] = useState(null);
-  const axios = require('axios');
 
   const { reservation_id } = useParams();
 
