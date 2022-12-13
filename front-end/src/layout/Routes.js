@@ -2,12 +2,14 @@ import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import NotFound from "./NotFound";
 
+import { today } from "../utils/date-time";
+
 import Dashboard from "../dashboard/Dashboard";
 import ReservationsAdd from "../reservations/ReservationAdd";
 import ReservationUpdate from "../reservations/ReservationUpdate";
-import RSearchForm from "../reservations/RSearchForm";
+import ReservationSearch from "../reservations/ReservationSearch";
 import SeatComp from "../seat/SeatComp";
-import TableForm from "../tables/TableForm";
+import TableAdd from "../tables/TableAdd";
 
 /**
  * Defines all the routes for the application.
@@ -22,26 +24,29 @@ function Routes() {
       <Route exact={true} path="/">
         <Redirect to={"/dashboard"} />
       </Route>
-      <Route exact={true} path="/reservations">
-        <Redirect to={"/dashboard"} />
-      </Route>
       <Route path="/dashboard">
         <Dashboard date={today()} />
       </Route>
-      <Route path="/reservations/new">
+      <Route exact={true} path="/search">
+        <ReservationSearch />
+      </Route>
+      <Route exact={true} path="/reservations">
+        <Redirect to={"/dashboard"} />
+      </Route>
+      <Route exact={true} path="/reservations/new">
         <ReservationsAdd />
       </Route>
-      <Route path="/reservations/:reservation_id/seat">
-        <SeatComp />
-      </Route>
-      <Route path="/reservations/:reservation_id/edit">
+      <Route exact={true} path="/reservations/:reservation_id/edit">
         <ReservationUpdate />
       </Route>
-      <Route path="/tables/new">
-        <TableForm />
+      <Route exact={true} path="/reservations/:reservation_id/seat">
+        <SeatComp />
       </Route>
-      <Route path="/search">
-        <RSearchForm />
+      <Route exact={true} path="/tables">
+        <Redirect to={"/dashboard"} />
+      </Route>
+      <Route exact={true} path="/tables/new">
+        <TableAdd />
       </Route>
       <Route>
         <NotFound />
