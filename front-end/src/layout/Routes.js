@@ -5,9 +5,9 @@ import NotFound from "./NotFound";
 import Dashboard from "../dashboard/Dashboard";
 import ReservationsAdd from "../reservations/ReservationAdd";
 import ReservationUpdate from "../reservations/ReservationUpdate";
+import RSearchForm from "../reservations/RSearchForm";
 import SeatComp from "../seat/SeatComp";
 import TableForm from "../tables/TableForm";
-import RSearchForm from "../search/RSearchForm";
 
 /**
  * Defines all the routes for the application.
