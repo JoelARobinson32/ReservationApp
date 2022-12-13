@@ -9,7 +9,7 @@ import ErrorAlert from "../layout/ErrorAlert";
 import "./ReservationsStyle.css";
 
 // Form for handling a reservation. 'Edit' bool checks if you are editing a new or existing reservation.
-export default function ReservationForm({ resExists, edit = false }) {
+export default function ReservationForm({ resExists, edit = 'f' }) {
   const { reservation_id } = useParams();
   const history = useHistory();
 
@@ -30,7 +30,7 @@ export default function ReservationForm({ resExists, edit = false }) {
     function loadReservation() {
     const abortController = new AbortController();
     setError(null);
-    if (edit === true) {
+    if (edit === 't') {
       listReservationsByID(Number(reservation_id), abortController.signal)
         .then(setFormData)
         .catch(setError);
@@ -62,7 +62,7 @@ export default function ReservationForm({ resExists, edit = false }) {
     const newReservation = formData;
 
     newReservation.people = parseInt(formData.people, 10);
-    if (edit === false) {
+    if (edit === 'f') {
       newReservation.status = "booked";
       addReservation(newReservation, abortController.signal)
         .then(rsp => history.push(`/dashboard?date=${formData.reservation_date}`))

@@ -4,7 +4,7 @@ import ReservationForm from './ReservationForm';
 function ReservationUpdate() {
     return (
         <div>
-            <ReservationForm edit={"true"} />
+            <ReservationForm edit={"t"} />
         </div>
     );
 }
